@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="Things" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="1" osVersion="*">
+  <Role name="Things_Web">
+    <Instances count="2" />
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" value="YOURCONNECTIONSTRING" />
+    </ConfigurationSettings>
+    <Certificates>
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

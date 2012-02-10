@@ -1,0 +1,82 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Things You Can Do with Windows Azure";
+}
+
+<div id="toc">
+    <h1 id="title">Things You Can Do with Windows Azure</h1>
+    <input type="text" id="search" />
+    <ul>
+        @foreach (var title in Model)
+        {
+            <li><a href="#@title">@title</a></li>
+        }
+    </ul>
+</div>
+<h1>&nbsp;</h1>
+<div id="content"></div>
+<script type="text/javascript">
+    $(function () {
+        $(document).keypress(function (e) {
+            $('#search').focus();
+
+            if (e.which == 13) {
+                var lis = $('#toc li:visible');
+                if (lis.length == 1) {
+                    window.location = lis.find('a').attr('href');
+                }
+            }
+        });
+        $(document).keydown(function (e) {
+            if (e.which == 27) {
+                $('#search').val(null);
+                e.preventDefault();
+                $('#search').blur();
+                filter();
+            }
+        });
+        $('#search').keyup(function (e) {
+            if ($(this).val() == "") $(this).blur();
+        });
+        jQuery.expr[':'].Contains = function (a, i, m) {
+            return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+        };
+        function filter() {
+            var filter = $('#search').val();
+            if (filter) {
+                $('#toc ul').find('a:not(:Contains(' + filter + '))').parent().slideUp();
+                $('#toc ul').find('a:Contains(' + filter + ')').parent().slideDown();
+            } else {
+                $('#toc ul').find('li').slideDown();
+            }
+        }
+        $('#search').keyup(filter);
+        var titleElement = null;
+        $(window).hashchange(function () {
+            if (location.hash == "") {
+                $('#toc').fadeIn();
+                $('#content').empty();
+                if (titleElement) titleElement.fadeOut().remove();
+            }
+            else {
+                if (titleElement) {
+                    titleElement.fadeOut().remove();
+                    titleElement = null;
+                }
+                var that = $('#toc ul').find('a:contains(' + decodeURI(location.hash.substring(1)) + ')');
+                $('html, body').animate({ scrollTop: 0 }, 500);
+                $('#toc').fadeOut();
+                var off = $('#title').offset();
+                $('#content').hide();
+                $("body").append(titleElement = $(that).clone().css({ position: 'absolute', backgroundColor: 'transparent', color: 'white', margin: 0, padding: 0, 'text-decoration': 'none' }).offset($(that).offset()).animate({
+                    fontSize: $('#title').css('fontSize'),
+                    top: off.top,
+                    left: off.left
+                }, 500, 'easeInOutCubic', function () { $(that).addClass('visited'); $('#content').fadeIn() }));
+                $('#content').load('/item/' + encodeURI($(that).text()) + ' #content', {});
+            }
+        });
+        $(window).hashchange();
+    });
+</script>

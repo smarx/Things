@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="Things" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <WebRole name="Things_Web">
+    <Startup>
+      <Task commandLine="startup\installmvc.cmd" executionContext="elevated" />
+      <Task commandLine="startup\installPython.cmd" executionContext="elevated" />
+      <Task commandLine="startup\disableTimeout.cmd" executionContext="elevated" />
+      <Task commandLine="startup\LivePerf.exe" executionContext="elevated" taskType="background" />
+    </Startup>
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="Endpoint1" endpointName="Endpoint1" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <Endpoints>
+      <InputEndpoint name="Endpoint1" protocol="http" port="80" />
+    </Endpoints>
+    <Imports>
+    </Imports>
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" />
+    </ConfigurationSettings>
+    <LocalResources>
+      <LocalStorage name="Python" cleanOnRoleRecycle="true" sizeInMB="1000" />
+    </LocalResources>
+  </WebRole>
+</ServiceDefinition>

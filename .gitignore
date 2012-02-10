@@ -1,0 +1,10 @@
+*.suo
+bin/
+obj/
+csx/
+*.user
+*.build.csdef
+AspNetMVC3Setup.exe
+Pygments-1.4-py2.7.egg
+python-2.7.1.msi
+setuptools-0.6c11-py2.7.egg

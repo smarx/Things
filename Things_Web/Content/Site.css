@@ -1,0 +1,18 @@
+html { background: Url(/content/bg.png) #2b2b2b; }
+body { font-family: Verdana; font-size: 18pt; color: white; }
+#toc ul { list-style:none; padding: 0 }
+#toc li { padding: 8px; margin: 5px; }
+a { color: #45a0f0; text-decoration: none; padding: 5px; }
+a:hover { color: white; background-color: #257fbd; }
+#toc a { background-color: #bd25a0; padding: 8px; color: white; text-decoration: none; }
+#toc a.visited { color: #a0a0a0; background-color: #702090 }
+#toc a:hover { background-color: #eeff4b; color: #2b2b2b; }
+h1 { font-weight: normal; margin: 0; padding: 0 }
+input#search { border: none; background-color: transparent; color: white; float: right; font-size: 24pt; width: 500px; }
+input#search:focus { border: 1px solid white; padding: 10px; }
+h2 { font-size: 18pt; text-align: right; font-weight: normal; margin: 0; padding: 10px; background-color: #257fbd; float: right; margin-top: 30px; }
+.highlight { clear: right; border: 1px solid #257fbd; padding: 10px; background-color: #101010; font-size: 18pt; }
+.highlight pre { white-space: pre-wrap; font-family: Consolas; }
+.highlight code { font-family: Consolas; }
+#content { font-size: 24pt; }
+#content li { margin-top: 10px; }

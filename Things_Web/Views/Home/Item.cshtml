@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Tuple<string, IHtmlString>>
+
+<h1>@ViewBag.Title</h1>
+
+<div id="content">
+    @foreach (var file in Model)
+    {
+        if (file.Item1 != null)
+        {
+            <h2>@file.Item1</h2>
+        }
+        @file.Item2
+    }
+</div>
+
